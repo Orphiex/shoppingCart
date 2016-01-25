@@ -8,13 +8,44 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="js/application.js"></script>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/custom.css" rel="stylesheet">
   </head>
   <body>
-    
+    <section class="container">
+      <div class="cart-header col-xs-12">
+        <h1>Shopping Cart</h1>
+      </div>
+    </section>
+
+    <section id="items-list" class = "container">
+      <div class="item row">
+        <div class="col-xs-4">
+          <input id="new-item-name">
+        </div>
+
+        <div class="col-xs-3">
+          <input id="new-item-price">
+        </div>
+
+        <div class="col-xs-3">
+          <button id="new-item-create">Create</button>
+        </div>
+      </div>
+
+      <div class="col-xs-3 col-xs-offset-9">
+        <button id="calc-prices-button" type="button" data-button="{"id": "3424"}" class="btn btn-success">Calculate Prices</button>
+      </div>
+
+      <div class="col-xs-12">
+          <h1 class="total-price-label">
+            Total Price:
+          </h1>
+          <h1 id="total-price">$0.00</h1>
+        </div>
+    </section>
   </body>
 </html>
