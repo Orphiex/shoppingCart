@@ -16,22 +16,15 @@ $(document).ready(function() {
 
   function calcPrice(){
     var total = 0;
-    debug;
     $('.item').each(function(item, element){
       var subtotal = parseFloat($(this).find(".item-subtotal").text().substring(1));
-      console.log(subtotal);
       total = total + subtotal;
-      console.log(total);
     });
     total = Number(total).toFixed(2);
     $('#total-price').text('$'+total);
   }
 
   function deleteRecord(){
-    console.log('test');
-    console.log($(this));
-    console.log($(this).closest('.item'));
-    debug;
     $(this).closest('.item').remove();
   }
 
@@ -68,16 +61,12 @@ $(document).ready(function() {
         $('#items-list').prepend(newItem).slideDown('slow');
       }
 
-    $('.cancel').off().on('click', function(){
-      console.log('delete test');
-      deleteRecord();
-    });
+    $('.cancel').off().on('click', deleteRecord);
 
     $('.quantity').on('blur', inputQTY);
   }
 
   $('#new-item-create').on('click', function(){
-    console.log('add test');
     addRecord();
   });
 
