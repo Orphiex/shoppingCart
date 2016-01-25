@@ -1,32 +1,38 @@
+var debug;
 $(document).ready(function() {
 
   function inputQTY(){
+    var parent = $(this).closest('.item');
     // Take integer value entered into field
-    $('.item').each(function(item, element){
-      var price = parseFloat($(this).find(".price").text());
-      console.log(price);
-      var quantity = $(this).find('.quantity').val();
-      var subtotal = quantity*price;
-      // Price must be in dollars
-      // Price must evaluate to .toFixed(2)
-      subtotal = Number(itemPrice).toFixed(2);
-      $(this).find('.item-subtotal').text('$'+subtotal);
-    });
+    var price = parseFloat(parent.find(".item-price").text().substring(1));
+    var quantity = $(this).val();
+    var subtotal = quantity*price;
+    // Price must be in dollars
+    // Price must evaluate to .toFixed(2)
+    subtotal = Number(subtotal).toFixed(2);
+    parent.find('.item-subtotal').text('$'+subtotal);
   }
 
 
   function calcPrice(){
-    var total;
-    $('.item-subtotal').each(function(item, element){
-      var subtotal = parseFloat($(this).find(".price").text());
+    var total = 0;
+    debug;
+    $('.item').each(function(item, element){
+      var subtotal = parseFloat($(this).find(".item-subtotal").text().substring(1));
+      console.log(subtotal);
       total = total + subtotal;
+      console.log(total);
     });
-    total = Number(itemPrice).toFixed(2);
+    total = Number(total).toFixed(2);
     $('#total-price').text('$'+total);
   }
 
   function deleteRecord(){
-    removeElement('parent');
+    console.log('test');
+    console.log($(this));
+    console.log($(this).closest('.item'));
+    debug;
+    $(this).closest('.item').remove();
   }
 
   function addRecord() {
@@ -62,14 +68,23 @@ $(document).ready(function() {
         $('#items-list').prepend(newItem).slideDown('slow');
       }
 
+    $('.cancel').off().on('click', function(){
+      console.log('delete test');
+      deleteRecord();
+    });
+
+    $('.quantity').on('blur', inputQTY);
   }
 
-  $('#new-item-create').click(addRecord);
+  $('#new-item-create').on('click', function(){
+    console.log('add test');
+    addRecord();
+  });
 
-  $('.cancel').click(deleteRecord);
 
-  $('#calc-prices-button').click(calcPrice);
+  $('#calc-prices-button').on('click', function(){
+    calcPrice();
+  });
 
-  $('.quantity').blur(inputQTY);
 
 });
